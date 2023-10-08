@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}    
    <title>Logic Loop</title> 
-    <link media="all" rel="stylesheet" href="{% static 'custom room.css' %}" type="text/css" />
+    <link media="all" rel="stylesheet" href="{% static 'css/custom room.css' %}" type="text/css" />
 {% endblock %}
 {% block content %}    
 
@@ -73,5 +73,5 @@
   </div>
 </div>
 
-<script src="custom room.js"></script>
+<script src="{% static "js\custom room.js" %}"></script>
 {% endblock %}
