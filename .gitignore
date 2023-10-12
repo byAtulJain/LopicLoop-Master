@@ -1,0 +1,10 @@
+__pycache__/
+*.log
+*.swp
+.idea/
+.vscode/
+.vscode-server/
+venv/
+.cache/
+.DS_Store
+.project
