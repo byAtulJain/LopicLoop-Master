@@ -1,6 +1,6 @@
 const container = document.getElementById('container');
-const registerBtn = document.getElementById('register');
-const loginBtn = document.getElementById('login');
+const registerBtn = document.getElementById('register_sudo');
+const loginBtn = document.getElementById('login_sudo');
 
 registerBtn.addEventListener('click', () => {
     container.classList.add("active");
