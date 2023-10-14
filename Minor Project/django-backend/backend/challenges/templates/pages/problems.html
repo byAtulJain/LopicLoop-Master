@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}    
+  <title>Logic Loop</title> 
+    <link media="all" rel="stylesheet" href="{% static 'css/problems.css' %}" type="text/css" />
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-3 problem-text">
+    <h4 class="">1. Two Sum </h4>
+    <p>Given an array of integers <code>nums</code>&nbsp;and an integer <code>target</code>, return <em>indices of the two numbers such that they add up to <code>target</code></em>.</p>
+
+    <p>You may assume that each input would have <strong><em>exactly</em> one solution</strong>, and you may not use the <em>same</em> element twice.</p>
+
+    <p>You can return the answer in any order.</p>
+
+    <br>
+    <br>
+
+        <p><strong >Example 1:</strong></p>
+        <pre><strong>Input:</strong> nums = [2,7,11,15], target = 9<br><strong>Output:</strong> [0,1]<br><strong>Explanation:</strong> Because nums[0] + nums[1] == 9, we return [0, 1].</pre>
+        <p><strong>Example 2:</strong></p>  
+        <pre><strong>Input:</strong> nums = [3,2,4], target = 6<br><strong>Output:</strong> [1,2]</pre>
+    </div>
+
+    <div class="col-lg-9">
+        <iframe
+        frameBorder="0"
+        height="500px"  
+        src="https://onecompiler.com/embed/?hideNew=true&&hideNewFileOption=true&&hideTitle=true&&hideNewFileOption=true&&availableLanguages=python,java,cpp"     
+        width="100%"
+        
+        ></iframe>
+<div class="subBtn">
+        <button class="submitBtn">
+            SUBMIT
+        </button>
+    </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+

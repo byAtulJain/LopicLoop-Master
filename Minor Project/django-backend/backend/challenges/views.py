@@ -28,7 +28,7 @@ def customRoom(request):
 
 @login_required
 def challenges(request):
-    return render(request, "pages/challenges.html")
+    return render(request, "pages/problems.html")
 
 def contact(request):
     return render(request, "pages/contact us.html")
