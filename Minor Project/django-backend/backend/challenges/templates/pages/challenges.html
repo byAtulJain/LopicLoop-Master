@@ -6,66 +6,48 @@
     <link media="all" rel="stylesheet" href="{% static 'css/challenges.css' %}" type="text/css" />
 {% endblock %}
 {% block content %}    
-<div class="card-container">
-        <div class="card">
-            <img class="card-image" src="https://i.postimg.cc/NfR2yhNs/image-equilibrium.jpg" alt="Spinning glass cube" height="200px" width="320px">
-            <div class="card-content">
-                <h3>Card 1</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit perspiciatis cupiditate cum nesciunt quos aspernatur saepe earum. Culpa sint eos animi ipsa, in expedita esse nobis quam voluptas voluptatum veniam.</p>
-                <br>
-                <a href="" class="btn">Read More</a>
-            </div>
+<div class="allcards">
+    <div class="container ">
+      
+      <div class="card">
+        <a href="{% url "allProblems" 'Easy' %}">
+        
+        <div class="box">
+        
+          <div class="content">
+            <!-- <h2>01</h2> -->
+            <h3>Easy</h3>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p> -->
+            <!-- <a href="#">Read More</a> -->
+          </div>
         </div>
-
-        <div class="card">
-            <img  class="card-image" src="https://i.postimg.cc/NfR2yhNs/image-equilibrium.jpg" alt="Spinning glass cube" height="200px" width="320px">
-            <div class="card-content">
-                <h3>Card 2</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit perspiciatis cupiditate cum nesciunt quos aspernatur saepe earum. Culpa sint eos animi ipsa, in expedita esse nobis quam voluptas voluptatum veniam.</p>
-                <br>
-                <a href="" class="btn">Read More</a>
-            </div>
+      </div>
+    
+      <div class="card">
+        <a href="{% url "allProblems" 'Medium' %}">
+        
+        <div class="box">
+          <div class="content">
+            <!-- <h2>02</h2> -->
+            <h3>Medium</h3>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p> -->
+            <!-- <a href="#">Read More</a> -->
+          </div>
         </div>
-
-        <div class="card">
-            <img class="card-image" src="https://i.postimg.cc/NfR2yhNs/image-equilibrium.jpg" alt="Spinning glass cube" height="200px" width="320px">
-            <div class="card-content">
-                <h3>Card 3</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit perspiciatis cupiditate cum nesciunt quos aspernatur saepe earum. Culpa sint eos animi ipsa, in expedita esse nobis quam voluptas voluptatum veniam.</p>
-                <br>
-                <a href="" class="btn">Read More</a>
-            </div>
+      </div>
+    
+      <div class="card">
+        <a href="{% url "allProblems" 'Hard' %}">
+        
+        <div class="box">
+          <div class="content">
+            <!-- <h2>03</h2> -->
+            <h3>Hard</h3>
+            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p> -->
+            <!-- <a href="#">Read More</a> -->
+          </div>
         </div>
+      </div>
     </div>
-    <div class="card-container">
-      <div class="card">
-          <img class="card-image" src="https://i.postimg.cc/NfR2yhNs/image-equilibrium.jpg" alt="Spinning glass cube" height="200px" width="320px">
-          <div class="card-content">
-              <h3>Card 1</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit perspiciatis cupiditate cum nesciunt quos aspernatur saepe earum. Culpa sint eos animi ipsa, in expedita esse nobis quam voluptas voluptatum veniam.</p>
-              <br>
-              <a href="" class="btn">Read More</a>
-          </div>
-      </div>
-
-      <div class="card">
-          <img class="card-image" src="https://i.postimg.cc/NfR2yhNs/image-equilibrium.jpg" alt="Spinning glass cube" height="200px" width="320px">
-          <div class="card-content">
-              <h3>Card 2</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit perspiciatis cupiditate cum nesciunt quos aspernatur saepe earum. Culpa sint eos animi ipsa, in expedita esse nobis quam voluptas voluptatum veniam.</p>
-              <br>
-              <a href="" class="btn">Read More</a>
-          </div>
-      </div>
-
-      <div class="card">
-          <img class="card-image" src="https://i.postimg.cc/NfR2yhNs/image-equilibrium.jpg" alt="Spinning glass cube" height="200px" width="320px">
-          <div class="card-content">
-              <h3>Card 3</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit perspiciatis cupiditate cum nesciunt quos aspernatur saepe earum. Culpa sint eos animi ipsa, in expedita esse nobis quam voluptas voluptatum veniam.</p>
-              <br>
-              <a href="" class="btn">Read More</a>
-          </div>
-      </div>
-  </div>
-  {% endblock %}
+  </div>  
+{% endblock %}

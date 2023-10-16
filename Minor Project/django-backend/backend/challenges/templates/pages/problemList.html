@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}    
+  <title>Logic Loop</title> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link media="all" rel="stylesheet" href="{% static 'css/problemList.css' %}" type="text/css" />
+{% endblock %}
+{% block content %}
+  <!-- list design -->
+
+<div class="container">
+    <h2> {{difficulty|upper}} CHALLENGES</h2>
+    <br>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1">S no.</div>
+        <div class="col col-2">Title</div>
+        <div class="col col-3">Points</div>
+        <!-- <div class="col col-4">Status</div> -->
+        
+      </li>
+      {% for problem in problems %}
+      <li class="table-row">
+        <div class="col col-1">{{problem.id}}</div>
+        <div class="col col-2">{{problem.title}}</div>
+        <div class="col col-3">{{problem.points}}</div>
+        <!-- <div class="col col-4">Pending</div> -->
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

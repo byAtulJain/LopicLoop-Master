@@ -3,27 +3,28 @@
 {% block title %}    
     <title>Document</title>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link media="all" rel="stylesheet" href="{% static 'css/learning resources.css' %}" type="text/css" />
+    <link media="all" rel="stylesheet" href="{% static 'css/learningResourcesLanguage.css' %}" type="text/css" />
 {% endblock %}
 {% block content %}    
 
     <!-- CARD DESIGN -->
 <div class="container mt-5 mb-3">
   <div class="row">
-    {%for row in data%}
+    {%for topic in topics%}
       <div class="col-md-4">
+         <a href="{% url "topicContent" topic.language topic.id %}" class="ag-courses-item_link">
           <div class="card p-3 mb-2">
               <div class="d-flex justify-content-between">
                   <div class="d-flex flex-row align-items-center">
                       <div class="icon"> <i class="bx bxl-javascript"></i> </div>
                       <div class="ms-2 c-details">
-                           <h6 class="mb-0">{{row.language}}</h6> <!-- <span>1 days ago</span> -->
+                           <h6 class="mb-0">{{topic.language}}</h6> <!-- <span>1 days ago</span> -->
                       </div>
                   </div>
-                  <div class="badge"> <span>{{row.difficulty}}</span> </div>
+                  <div class="badge"> <span>{{topic.difficulty}}</span> </div>
               </div>
               <div class="mt-5">
-                  <h3 class="heading">{{row.headline}}</h3>
+                  <h3 class="heading">{{topic.headline}}</h3>
               </div>
           </div>
       </div>

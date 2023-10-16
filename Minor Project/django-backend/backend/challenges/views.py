@@ -6,18 +6,33 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+import requests
 
-from .models import ResourceCard
+from .models import Topic, Language, Problem
 from .forms import UserForm,UserProfileInfoForm, UserLoginForm
 
 def index(request):
     return render(request, "index.html")
 
+
+
+##Learning Resources
 def learningResources(request):
-    data = ResourceCard.objects.all()
-    context = {"data": data}
-    return render(request, "pages/learningResources.html",context)
+    data = Language.objects.all()
+    context = {"languages": data}
+    return render(request, "pages/learningResourcesHome.html",context)
+
+def languageTopics(request, language):
+    data = Topic.objects.filter(language__name=language)
+    context = {"topics": data}
+    return render(request, "pages/learningResourcesLanguage.html",context)
+
+def topicContent(request, language, topicId):
+	data = Topic.objects.get(pk=topicId)
+	context = {"topic": data}
+	return render(request, "pages/learningResourcesContent.html", context)
+
 
 def codeEditor(request):
     return render(request, "pages/code editor.html")
@@ -26,9 +41,24 @@ def codeEditor(request):
 def customRoom(request):
     return render(request, "pages/custom room.html")
 
+
+## challenges
 @login_required
 def challenges(request):
-    return render(request, "pages/problems.html")
+    return render(request, "pages/challenges.html")
+
+def allProblems(request, difficulty):
+	data = Problem.objects.filter(difficulty=difficulty)
+	context = {"problems": data,"difficulty":difficulty}
+	return render(request, "pages/problemList.html",context)
+
+def problem(request, difficulty, problemId):
+	data = Problem.objects.get(pk=problemId)
+	context = {"problem": data}
+	return render(request, "pages/problem.html",context)
+
+
+
 
 def contact(request):
     return render(request, "pages/contact us.html")
@@ -86,3 +116,36 @@ def user_logout(request):
     logout(request)
     # Return to homepage.
     return HttpResponseRedirect(reverse('index'))
+
+def compile_code(request):
+	if request.method == 'POST':
+		code = request.POST.get('code')
+		language = request.POST.get('lang')
+		print(code,language)
+		# JDoodle API endpoint for code execution
+		api_endpoint = "https://api.jdoodle.com/v1/execute"
+
+		# JDoodle API credentials (replace with your own)
+		client_id = "4be53239792086fc651032ad8dbb6b68"
+		client_secret = "83c5c897ee8dd7b2ac3ac3d3d74701656ea0eabb079d761c4ee2e8e7a6113cde"
+
+		# Prepare the request payload
+		data = {
+			"clientId": client_id,
+			"clientSecret": client_secret,
+			"script": code,
+			"language": language,
+			"versionIndex": "0",  # Use "0" for the latest version
+		}
+
+		# Make the API request to JDoodle
+		response = requests.post(api_endpoint, json=data)
+		print(response)
+		if response.status_code == 200:
+			result = response.json()
+			output = result.get("output")
+			return JsonResponse({'result': output})
+		else:
+			return JsonResponse({'result': f"Error: {response.status_code} - {response.text}"})    
+		
+	return render(request, "pages/problems.html")

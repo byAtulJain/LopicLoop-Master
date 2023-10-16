@@ -16,7 +16,6 @@
 
     <br>
     <br>
-
         <p><strong >Example 1:</strong></p>
         <pre><strong>Input:</strong> nums = [2,7,11,15], target = 9<br><strong>Output:</strong> [0,1]<br><strong>Explanation:</strong> Because nums[0] + nums[1] == 9, we return [0, 1].</pre>
         <p><strong>Example 2:</strong></p>  
@@ -27,19 +26,34 @@
         <iframe
         frameBorder="0"
         height="500px"  
-        src="https://onecompiler.com/embed/?hideNew=true&&hideNewFileOption=true&&hideTitle=true&&hideNewFileOption=true&&availableLanguages=python,java,cpp"     
+        src="https://onecompiler.com/embed/?codeChangeEvent=true&&hideNew=true&&hideNewFileOption=true&&hideTitle=true&&hideNewFileOption=true&&availableLanguages=python,java,cpp"     
         width="100%"
-        
         ></iframe>
-<div class="subBtn">
-        <button class="submitBtn">
-            SUBMIT
-        </button>
-    </div>
+        <div class="subBtn">
+            <form id="codeForm" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="code" id="codeInput">
+                <input type="hidden" name="lang" id="languageInput">
+                <button id="submitBtn" class="submitBtn">SUBMIT</button>
+            </form>
+        </div>
     </div>
   </div>
-
-
+    <script>
+        window.onmessage = function (e) {
+            // if (e.data && e.data.language) {
+                console.log(e.data.language);
+                // Handle the e.data which contains the code object
+                const code = e.data.files[0].content; // Extract the code from the message
+                const lang = e.data.language;
+                // Update the hidden form field when the Submit button is clicked
+                document.getElementById('submitBtn').addEventListener('click', function() {
+                    document.getElementById('codeInput').value = code;
+                    document.getElementById('languageInput').value = 'python3';
+                });
+            // }
+        };
+    </script>
 {% endblock %}
 
 

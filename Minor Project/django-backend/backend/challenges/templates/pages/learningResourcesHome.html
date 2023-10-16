@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% load static %}
+{% block title %}    
+  <title>Logic Loop</title> 
+    <link media="all" rel="stylesheet" href="{% static 'css/learningResourcesHome.css' %}" type="text/css" />
+{% endblock %}
+{% block content %}
+<div class="ag-format-container">
+  <div class="ag-courses_box"> 
+    {% for language in languages %}
+    <div class="ag-courses_item">
+      <a href="{% url "languageTopics" language.name %}" class="ag-courses-item_link">
+        <div class="ag-courses-item_bg"></div>
+
+        <div class="ag-courses-item_title">
+         {{language.name}}
+        </div>
+
+        <!-- <div class="ag-courses-item_date-box">
+          Start:
+          <span class="ag-courses-item_date">
+            04.11.2022
+          </span>
+        </div> -->
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

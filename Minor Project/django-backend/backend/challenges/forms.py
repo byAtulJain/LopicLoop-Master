@@ -11,10 +11,9 @@ class UserForm(forms.ModelForm):
 class UserProfileInfoForm(forms.ModelForm):	
 	class Meta():
 		model = UserProfileInfo
-		fields = ('rating',)
+		fields = ('rank','points',)
 
 class UserLoginForm(forms.Form):
 	username = forms.CharField()
 	password = forms.CharField(widget=forms.PasswordInput())
 
-	
