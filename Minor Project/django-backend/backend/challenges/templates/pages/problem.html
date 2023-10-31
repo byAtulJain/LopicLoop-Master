@@ -32,23 +32,10 @@
                 <button id="submitBtn" class="submitBtn">SUBMIT</button>
             </form>
         </div>
+        <div id="result"></div>
     </div>
   </div>
-    <script>
-        window.onmessage = function (e) {
-            // if (e.data && e.data.language) {
-                console.log(e.data);
-                // Handle the e.data which contains the code object
-                const code = e.data.files[0].content; // Extract the code from the message
-                const lang = e.data.language;
-                // Update the hidden form field when the Submit button is clicked
-                document.getElementById('submitBtn').addEventListener('click', function() {
-                    document.getElementById('codeInput').value = code;
-                    document.getElementById('languageInput').value = 'python3';
-                });
-            // }
-        };
-    </script>
+    <script src="{% static "js\problem.js" %}"></script>>
 {% endblock %}
 
 

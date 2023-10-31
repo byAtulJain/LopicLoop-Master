@@ -85,16 +85,15 @@ def problem(request, difficulty, problemId):
 			if response.status_code == 200:
 				result = response.json()
 				output = result.get("output")
-				print(output,testcase.expected_ouput)
 				if output.strip() == testcase.expected_ouput.strip():
 					succes_count+=1
 				else:
 					fail_count+=1
-					#return JsonResponse({'result': output})
-		return JsonResponse({"Testcases Passed":succes_count,"Testcases Failed":fail_count})
+			else:
+				return JsonResponse({'error': response.text})
+		return JsonResponse({"TestcasesPassed":succes_count,"TestcasesFailed":fail_count})
 				#return JsonResponse({'result': f"Error: {response.status_code} - {response.text}"})    
-		
-	
+			
 	return render(request, "pages/problem.html",context)
 
 
