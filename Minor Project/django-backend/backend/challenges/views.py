@@ -53,11 +53,49 @@ def allProblems(request, difficulty):
 	return render(request, "pages/problemList.html",context)
 
 def problem(request, difficulty, problemId):
-	data = Problem.objects.get(pk=problemId)
-	context = {"problem": data}
+	problem = Problem.objects.get(pk=problemId)
+	testcases = problem.testcases.filter(hidden=False).all()
+	context = {"problem": problem,"testcases":testcases}
+	if request.method == 'POST':
+		code = request.POST.get('code')
+		language = request.POST.get('lang')
+		
+		# JDoodle API endpoint for code execution
+		api_endpoint = "https://api.jdoodle.com/v1/execute"
+
+		# JDoodle API credentials (replace with your own)
+		client_id = "4be53239792086fc651032ad8dbb6b68"
+		client_secret = "5f239b37e34765cc9dc53d0cd88efe6097426661672bb283d9aec14890ea1bbc"
+
+		# Prepare the request payload
+		data = {
+			"clientId": client_id,
+			"clientSecret": client_secret,
+			"script": code,
+			"language": language,
+			"versionIndex": "0",  # Use "0" for the latest version
+		}
+		testcases = problem.testcases.all()
+		succes_count=0
+		fail_count=0
+		for testcase in testcases:
+			data["stdin"]=testcase.input_data
+			# Make the API request to JDoodle
+			response = requests.post(api_endpoint, json=data)
+			if response.status_code == 200:
+				result = response.json()
+				output = result.get("output")
+				print(output,testcase.expected_ouput)
+				if output.strip() == testcase.expected_ouput.strip():
+					succes_count+=1
+				else:
+					fail_count+=1
+					#return JsonResponse({'result': output})
+		return JsonResponse({"Testcases Passed":succes_count,"Testcases Failed":fail_count})
+				#return JsonResponse({'result': f"Error: {response.status_code} - {response.text}"})    
+		
+	
 	return render(request, "pages/problem.html",context)
-
-
 
 
 def contact(request):
@@ -117,35 +155,3 @@ def user_logout(request):
     # Return to homepage.
     return HttpResponseRedirect(reverse('index'))
 
-def compile_code(request):
-	if request.method == 'POST':
-		code = request.POST.get('code')
-		language = request.POST.get('lang')
-		print(code,language)
-		# JDoodle API endpoint for code execution
-		api_endpoint = "https://api.jdoodle.com/v1/execute"
-
-		# JDoodle API credentials (replace with your own)
-		client_id = "4be53239792086fc651032ad8dbb6b68"
-		client_secret = "83c5c897ee8dd7b2ac3ac3d3d74701656ea0eabb079d761c4ee2e8e7a6113cde"
-
-		# Prepare the request payload
-		data = {
-			"clientId": client_id,
-			"clientSecret": client_secret,
-			"script": code,
-			"language": language,
-			"versionIndex": "0",  # Use "0" for the latest version
-		}
-
-		# Make the API request to JDoodle
-		response = requests.post(api_endpoint, json=data)
-		print(response)
-		if response.status_code == 200:
-			result = response.json()
-			output = result.get("output")
-			return JsonResponse({'result': output})
-		else:
-			return JsonResponse({'result': f"Error: {response.status_code} - {response.text}"})    
-		
-	return render(request, "pages/problems.html")

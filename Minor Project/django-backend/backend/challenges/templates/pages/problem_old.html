@@ -7,14 +7,19 @@
 {% block content %}
 <div class="row">
     <div class="col-lg-3 problem-text">
-    <h4 class="">{{problem.title}} </h4>
-    {{problem.statement|safe}}
+    <h4 class="">1. Two Sum </h4>
+    <p>Given an array of integers <code>nums</code>&nbsp;and an integer <code>target</code>, return <em>indices of the two numbers such that they add up to <code>target</code></em>.</p>
+
+    <p>You may assume that each input would have <strong><em>exactly</em> one solution</strong>, and you may not use the <em>same</em> element twice.</p>
+
+    <p>You can return the answer in any order.</p>
+
     <br>
     <br>
-    {% for testcase in testcases %}
-        <p><strong >Example&nbsp;&nbsp;{{ forloop.counter }}&nbsp;&nbsp;:</strong></p>
-        <pre><strong>Input:</strong>  {{testcase.input_data}}<br><strong>Output:</strong>  {{testcase.expected_ouput}}<br></pre>
-    {% endfor %}       
+        <p><strong >Example 1:</strong></p>
+        <pre><strong>Input:</strong> nums = [2,7,11,15], target = 9<br><strong>Output:</strong> [0,1]<br><strong>Explanation:</strong> Because nums[0] + nums[1] == 9, we return [0, 1].</pre>
+        <p><strong>Example 2:</strong></p>  
+        <pre><strong>Input:</strong> nums = [3,2,4], target = 6<br><strong>Output:</strong> [1,2]</pre>
     </div>
 
     <div class="col-lg-9">
@@ -37,7 +42,7 @@
     <script>
         window.onmessage = function (e) {
             // if (e.data && e.data.language) {
-                console.log(e.data);
+                console.log(e.data.language);
                 // Handle the e.data which contains the code object
                 const code = e.data.files[0].content; // Extract the code from the message
                 const lang = e.data.language;

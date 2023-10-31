@@ -38,5 +38,6 @@ class Problem(models.Model):
 class TestCase(models.Model):
     input_data = models.TextField()
     expected_ouput = models.TextField()
-    problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
+    hidden = models.BooleanField(default=False)
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE, related_name="testcases")
    

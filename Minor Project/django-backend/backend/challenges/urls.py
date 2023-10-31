@@ -19,7 +19,4 @@ urlpatterns = [
     path("contact", views.contact, name="contact"),
     path("register", views.register, name="register"),
     path("logout",views.user_logout,name="user_logout"),
-    
-    #temporary for test case
-    path('compile', views.compile_code, name='compile_code'),
 ]
