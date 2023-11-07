@@ -50,7 +50,31 @@
 
 <!-- MAIN BODY -->
 
-  {% block content %}{% endblock %}
+  {% block content %}
+  
+<div class="home-text">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+  <div class="website-name">LOGIC LOOP</div>
+  <br>
+  <h1>Empowering Coders through 
+      <br>
+    <span
+       class="txt-rotate"
+       data-period="2000"
+       data-rotate='[ "Challenges.",  "Learning Resources.", "Collaborative Learning.", "Code Editor."]'></span>
+  </h1>
+  </div>
+  
+  <!-- BUTTON -->
+  <div class="start-button">
+  <link rel="preconnect" href="https://fonts.gstatic.com"> 
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+   <a href="{% url "codeEditor" %}"><button>Start Now</button></a>
+  </div>
+  
+  <script src="{% static "js\index.js" %}"></script>
+  {% endblock %}
 </body>
 </html>
 
